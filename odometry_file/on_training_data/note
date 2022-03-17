@@ -1,0 +1,70 @@
+./ndtro/gt ==>
+copy from /Downloads/kitti/devkit_for_oxford/cpp/data/odometry/poses
+and coordinate transform by :
+	$ evo_traj kitti 2019-01-10-11-46_gt.txt --transform_left ro_tf.json --save_as_kitti
+	$ evo_traj kitti 2019-01-10-11-46_gt.kitti --transform_right ro_tf.json --save_as_kitti
+
+./ndtro/res ==>
+copy from /Downloads/kitti/devkit_for_oxford/cpp/results/2stage/data
+and remove last term.
+
+=================================================================
+NDTRO: 01-10-11
+Trans.
+       max	0.549899
+      mean	0.037968
+    median	0.027841
+       min	0.000003
+      rmse	0.057720
+       sse	29.531419
+       std	0.043474
+Rot.
+       max	0.694644
+      mean	0.043907
+    median	0.029208
+       min	0.000000
+      rmse	0.068085
+       sse	41.089081
+       std	0.052035
+=================================================================
+Test with 01-10-11
+ransac = 3.0 as default
+
+ep10:	/2021-03-23_23-22-37/epoch_10.pth
+0.072859 0.078906
+ep30: /2021-03-28_21-32-13/epoch_30.pth
+0.039727 0.063224
+ep30_ransac_1: /2021-03-28_21-32-13/epoch_30.pth
+0.039279 0.064579
+
+=> all loss + odom loss
+
+2021-03-30_14-52-08: data_aug + ransac(all) odom_loss
+0.129223 0.140364
+
+2021-03-30_21-51-01: ransac(all) odom_loss
+0.064680 0.093117
+
+2021-03-30_23-57-20: data_aug + ransac(all) odom_loss + rm disp_loss --> not working
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

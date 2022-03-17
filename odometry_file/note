@@ -1,0 +1,81 @@
+./ndtro/gt ==>
+copy from /Downloads/kitti/devkit_for_oxford/cpp/data/odometry/poses
+and coordinate transform by :
+	$ evo_traj kitti 2019-01-10-11-46_gt.txt --transform_left ro_tf.json --save_as_kitti
+	$ evo_traj kitti 2019-01-10-11-46_gt.temp --transform_right ro_tf.json --save_as_kitti
+
+./ndtro/res ==>
+copy from /Downloads/kitti/devkit_for_oxford/cpp/results/2stage/data
+and remove last term.
+
+=================================================================
+NDTRO: 01-10-11
+	ndtro paper setting: 0.027841 0.043907
+													 				mean, 						midian, 						std
+	vs motionnet setting v1 (0.33): 0.077826 0.090527 (0.039030 0.054174) <0.209049 0.400496>
+											 v4 (0.3): 0.066693 0.076338 (0.042237 0.050497) <0.134552 0.231685>
+											 v2 (0.275): 0.063638 0.072358 (0.043964 0.050053) <0.103036 0.085444>
+											 v3 (0.215): 0.071541 0.073350  (0.053298 0.050667)
+
+NDTRO: 01-10-12
+	ndtro paper setting: 0.035856 0.044278
+	vs motionnet setting: 0.074513 0.091388 (0.039794 0.054456)
+												0.061381 0.080150 (0.042909 0.052693)
+(including one serious angle failure)
+=================================================================
+Test with 01-10-11, training data as default.
+ransac = 3.0 as default.
+
+ep10:	/2021-03-23_23-22-37/epoch_10.pth
+0.072859 0.078906
+ep30: /2021-03-28_21-32-13/epoch_30.pth
+training err: 0.039727 0.063224 (0.028957 0.042499)
+testing err: 0.053535 0.077032 (0.037313 0.050351)
+
+ep30_ransac_1: /2021-03-28_21-32-13/epoch_30.pth
+0.039279 0.064579
+
+-----------------------------------------------------
+=> all loss + odom loss
+	 data_aug
+
+2021-03-30_14-52-08: ransac(all) odom_loss
+0.129223 0.140364
+
+2021-03-30_21-51-01: ransac(all) odom_loss + rm data_aug
+0.064680 0.093117
+
+2021-03-30_23-57-20: ransac(all) odom_loss + rm disp_loss
+--> not working
+
+2021-03-31_11-53-21: ransac(all) odom_loss
+									 + Load pretrained /2021-03-28_21-32-13/epoch_30.pth 
+training err: 0.040799 0.067870
+testing err: 0.054625 0.082977
+
+=====!!!!! 3.31 fix a bug: odom_loss wo grad !!!!!=====
+
+=> Load pretrained /2021-03-28_21-32-13/epoch_30.pth
+	only odom_loss
+	data_aug
+
+2021-03-31_16-18-00: ransac(all) odom_loss
+training err: 0.039891 0.063695
+testing err: 0.054301 0.078164
+
+2021-03-31_17-44-42: all_loss + odomnet loss -> not working...
+2021-03-31_18-54-56: all_loss + plot odom_loss -> proof tf gt is correct.
+
+2021-03-31_21-37-40: all_loss + odomnet loss(with masked disp map as input)
+ + Load pretrained /2021-03-28_21-32-13/epoch_30.pth
+
+-----------------------------------------------------
+
+scv:
+	training err: 0.078072 0.105882
+	testing err: 0.076002 0.111274
+
+
+
+
+

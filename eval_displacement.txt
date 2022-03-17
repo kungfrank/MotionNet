@@ -1,0 +1,60 @@
+--------------------------------------------------------------
+For cells within speed range [0.0, 0.0]:
+
+Frame 4:
+The mean error is None
+The 50% error quantile is None
+Frame 8:
+The mean error is None
+The 50% error quantile is None
+Frame 12:
+The mean error is None
+The 50% error quantile is None
+Frame 16:
+The mean error is None
+The 50% error quantile is None
+Frame 20:
+The mean error is None
+The 50% error quantile is None
+--------------------------------------------------------------
+
+--------------------------------------------------------------
+For cells within speed range [0.0, 5.0]:
+
+Frame 4:
+The mean error is None
+The 50% error quantile is None
+Frame 8:
+The mean error is None
+The 50% error quantile is None
+Frame 12:
+The mean error is None
+The 50% error quantile is None
+Frame 16:
+The mean error is None
+The 50% error quantile is None
+Frame 20:
+The mean error is None
+The 50% error quantile is None
+--------------------------------------------------------------
+
+--------------------------------------------------------------
+For cells within speed range [5.0, 20.0]:
+
+Frame 4:
+The mean error is None
+The 50% error quantile is None
+Frame 8:
+The mean error is None
+The 50% error quantile is None
+Frame 12:
+The mean error is None
+The 50% error quantile is None
+Frame 16:
+The mean error is None
+The 50% error quantile is None
+Frame 20:
+The mean error is None
+The 50% error quantile is None
+--------------------------------------------------------------
+
